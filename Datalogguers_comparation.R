@@ -33,12 +33,15 @@ ggplot(averages)+
   geom_point(aes(x= N, y= Datalogguers), col= "brown2")+
   geom_smooth(aes(x=N, y= Datalogguers), col= "brown2", fill = "brown2", alpha = 0.2)+
   geom_smooth(aes(x=N, y= Datalogguers), col= "brown2",method = lm, se = FALSE)+
+  stat_regline_equation(aes(x= N, y= Datalogguers),label.x=2, label.y=25, col = "brown2")+
   geom_point(aes(x= N, y= Chelsa), col= "deepskyblue2")+
   geom_smooth(aes(x=N, y= Chelsa), col= "deepskyblue2", fill = "deepskyblue2", alpha = 0.2)+
   geom_smooth(aes(x=N, y= Chelsa), col= "deepskyblue2",method = lm, se = FALSE)+
+  stat_regline_equation(aes(x= N, y= Chelsa),label.x=2, label.y=22.5, col = "deepskyblue2")+
   geom_point(aes(x= N, y= Microclima), col= "chartreuse4")+
   geom_smooth(aes(x=N, y= Microclima), col= "chartreuse4", fill = "chartreuse4", alpha = 0.2)+
   geom_smooth(aes(x=N, y= Microclima), col= "chartreuse4",method = lm, se = FALSE)+
+  stat_regline_equation(aes(x= N, y= Microclima),label.x=2, label.y=20, col = "chartreuse4")+
   labs(y = "Temperature (ºC)", x = "Date")+
   theme(
     panel.background = element_rect(fill = "white",
@@ -51,5 +54,23 @@ ggplot(averages)+
     axis.text.x = element_blank(),
     axis.ticks.x = element_blank()
   )
+
+my.formula <- averages$Datalogguers ~ averages$N
+
+a <- lm(averages$Datalogguers ~ averages$N)
+
+a$coefficients[2]
+
+my.formula <- y ~ x
+
+ggplot(averages)+
+  geom_point(aes(x= N, y= Datalogguers), col= "brown2")+
+  geom_smooth(aes(x=N, y= Datalogguers), col= "brown2", fill = "brown2", alpha = 0.2)+
+  stat_regline_equation(aes(x= N, y= Datalogguers),label.x=10, label.y=30, col = "blue")
+
+library(ggpubr)
+
+
+
 
 
